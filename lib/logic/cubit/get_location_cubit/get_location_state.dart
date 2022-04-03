@@ -5,11 +5,9 @@ abstract class GetLocationState {}
 
 class GetLocationInitial extends GetLocationState {}
 
-class GetLocationLoading extends GetLocationState {}
-
-class GetLocationSucceed extends GetLocationState {
+class GetLocationGetting extends GetLocationState {
   final LatLong latLong;
-  GetLocationSucceed({
+  GetLocationGetting({
     required this.latLong,
   });
 
@@ -17,14 +15,14 @@ class GetLocationSucceed extends GetLocationState {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is GetLocationSucceed && other.latLong == latLong;
+    return other is GetLocationGetting && other.latLong == latLong;
   }
 
   @override
   int get hashCode => latLong.hashCode;
 
   @override
-  String toString() => 'GetLocationSucceed(latLong: $latLong)';
+  String toString() => 'GetLocationGetting(latLong: $latLong)';
 }
 
 class GetLocationFailed extends GetLocationState {

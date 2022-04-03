@@ -1,9 +1,8 @@
 class Strings {
   // App
-  static const appTitle = 'Garbage Cleaning Services';
+  static const appTitle = 'App Name';
 
   // HomeScreen
   static const homeScreenTitle = 'Home Screen';
-  static const landingImage = "assets/images/landing.png";
-  static const markerImage = "assets/images/truck.png";
+  static const homeScreenCenterText = 'Badu Wada Brooo';
 }

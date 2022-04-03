@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:garbage_cleaning_service/core/constants/strings.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/enums/user_type.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../logic/cubit/landing_screen_cubit/landing_screen_cubit.dart';
 import '../../../router/app_router.dart';
@@ -35,18 +35,33 @@ class _LandingPageState extends State<LandingPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Image.asset(Strings.landingImage),
+              Image.asset("assets/images/landing.png"),
               SizedBox(
                 height: 5.h,
               ),
               BlocConsumer<LandingScreenCubit, LandingScreenState>(
                 listener: (context, state) {
                   if (state is LandingScreenSucceed) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      AppRouter.userPage,
-                      (route) => false,
-                      arguments: state.typeUser,
-                    );
+                    final UserType userType = state.typeUser.userType;
+                    if (userType == UserType.user) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        AppRouter.userPage,
+                        (route) => false,
+                        arguments: state.typeUser,
+                      );
+                    } else if (userType == UserType.driver) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        AppRouter.driverPage,
+                        (route) => false,
+                        arguments: state.typeUser,
+                      );
+                    } else {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        AppRouter.ticketCheckerPage,
+                        (route) => false,
+                        arguments: state.typeUser,
+                      );
+                    }
                   } else if (state is LandingScreenNoUser) {
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       AppRouter.loginPage,

@@ -1,27 +1,37 @@
 import 'dart:convert';
 
+import '../../core/enums/user_type.dart';
+import '../converters/user_type_converter.dart';
+
 class TypeUser {
   final String userId;
   final String userEmail;
+  final UserType userType;
   TypeUser({
     required this.userId,
     required this.userEmail,
+    required this.userType,
   });
 
   TypeUser copyWith({
     String? userId,
     String? userEmail,
+    UserType? userType,
   }) {
     return TypeUser(
       userId: userId ?? this.userId,
       userEmail: userEmail ?? this.userEmail,
+      userType: userType ?? this.userType,
     );
   }
+
+  String get typeString => typeToString(userType);
 
   Map<String, dynamic> toMap() {
     return {
       'userId': userId,
       'userEmail': userEmail,
+      'userType': typeString,
     };
   }
 
@@ -29,6 +39,7 @@ class TypeUser {
     return TypeUser(
       userId: map['userId'] ?? '',
       userEmail: map['userEmail'] ?? '',
+      userType: stringToType(map['userType']),
     );
   }
 
@@ -38,7 +49,8 @@ class TypeUser {
       TypeUser.fromMap(json.decode(source));
 
   @override
-  String toString() => 'TypeUser(userId: $userId, userEmail: $userEmail)';
+  String toString() =>
+      'TypeUser(userId: $userId, userEmail: $userEmail, userType: $userType)';
 
   @override
   bool operator ==(Object other) {
@@ -46,9 +58,10 @@ class TypeUser {
 
     return other is TypeUser &&
         other.userId == userId &&
-        other.userEmail == userEmail;
+        other.userEmail == userEmail &&
+        other.userType == userType;
   }
 
   @override
-  int get hashCode => userId.hashCode ^ userEmail.hashCode;
+  int get hashCode => userId.hashCode ^ userEmail.hashCode ^ userType.hashCode;
 }

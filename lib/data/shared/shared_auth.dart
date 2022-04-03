@@ -10,6 +10,7 @@ class SharedAuth {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       preferences.setString(SharedKeys.uid, typeUser.userId);
       preferences.setString(SharedKeys.email, typeUser.userEmail);
+      preferences.setString(SharedKeys.userType, typeUser.typeString);
     } catch (e) {
       throw e.toString();
     }
@@ -34,6 +35,7 @@ class SharedAuth {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.remove(SharedKeys.uid);
       await preferences.remove(SharedKeys.email);
+      await preferences.remove(SharedKeys.userType);
     } catch (e) {
       throw e.toString();
     }
@@ -44,6 +46,7 @@ class SharedAuth {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       final String uid = preferences.getString(SharedKeys.uid) ?? "";
       final String email = preferences.getString(SharedKeys.email) ?? "";
+      final String userType = preferences.getString(SharedKeys.userType) ?? "";
 
       if (uid.isEmpty) {
         throw "Empty UID!";
@@ -51,10 +54,14 @@ class SharedAuth {
       if (email.isEmpty) {
         throw "Empty email!";
       }
+      if (userType.isEmpty) {
+        throw "Empty userType!";
+      }
 
       return TypeUser(
         userId: uid,
         userEmail: email,
+        userType: stringToType(userType),
       );
     } catch (e) {
       throw e.toString();

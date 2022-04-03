@@ -42,12 +42,31 @@ class _UserPageState extends State<UserPage> {
                   width: 3.w,
                 ),
                 Expanded(
-                  child: Text(
-                    "Garbage Cleaning Service",
-                    style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold),
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
+                    margin: EdgeInsets.symmetric(vertical: 1.5.h),
+                    decoration: BoxDecoration(
+                        color: AppColors.primaryColor.withOpacity(0.15),
+                        borderRadius: BorderRadius.circular(2.w)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Search...",
+                            style: TextStyle(
+                                color: AppColors.primaryColor,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        Icon(
+                          Icons.search_rounded,
+                          color: AppColors.primaryColor,
+                          size: 22.sp,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(

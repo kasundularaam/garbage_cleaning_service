@@ -1,16 +1,9 @@
 import 'package:location/location.dart';
 
-import '../../data/models/lat_long.dart';
-
 class LocationServices {
   static Location location = Location();
 
   static Stream<LocationData> get locationStream => location.onLocationChanged;
-  static Future<LatLong> currentLocation() async =>
-      await location.getLocation().then((loc) => LatLong(
-            lat: loc.latitude!,
-            long: loc.longitude!,
-          ));
 
   static Future<bool> isPermissionAllowed() async {
     bool _serviceEnabled;

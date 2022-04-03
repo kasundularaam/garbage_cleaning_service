@@ -8,23 +8,23 @@ class RegisterInitial extends RegisterState {}
 class RegisterLoading extends RegisterState {}
 
 class RegisterSucceed extends RegisterState {
-  final TypeUser typeUser;
+  final TypeUser user;
   RegisterSucceed({
-    required this.typeUser,
+    required this.user,
   });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is RegisterSucceed && other.typeUser == typeUser;
+    return other is RegisterSucceed && other.user == user;
   }
 
   @override
-  int get hashCode => typeUser.hashCode;
+  int get hashCode => user.hashCode;
 
   @override
-  String toString() => 'RegisterSucceed(typeUser: $typeUser)';
+  String toString() => 'RegisterSucceed(user: $user)';
 }
 
 class RegisterFailed extends RegisterState {

@@ -1,32 +1,35 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import "package:latlong2/latlong.dart" as latLng;
 
-import '../../../../../logic/cubit/all_trains_cubit/all_trains_cubit.dart';
+import '../../../../../data/models/train_location.dart';
+import '../../../../../logic/cubit/send_location_cubit/send_location_cubit.dart';
 
-class UserMap extends StatefulWidget {
-  const UserMap({Key? key}) : super(key: key);
+class DriverMap extends StatefulWidget {
+  const DriverMap({Key? key}) : super(key: key);
 
   @override
-  State<UserMap> createState() => _UserMapState();
+  State<DriverMap> createState() => _DriverMapState();
 }
 
-class _UserMapState extends State<UserMap> {
+class _DriverMapState extends State<DriverMap> {
   MapController mapController = MapController();
-
+  TrainLocation? trainLocation;
   List<Marker> markers = [];
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AllTrainsCubit, AllTrainsState>(
+    return BlocListener<SendLocationCubit, SendLocationState>(
       listener: (context, state) {
-        if (state is AllTrainsLoaded) {
-          log(state.markers.length.toString());
+        if (state is SendLocationSending) {
           setState(() {
+            trainLocation = state.trainLocation;
             markers = state.markers;
           });
+          mapController.move(
+              latLng.LatLng(trainLocation!.latitude, trainLocation!.longitude),
+              15.0);
         }
       },
       child: FlutterMap(
