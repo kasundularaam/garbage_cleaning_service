@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:garbage_cleaning_service/core/constants/strings.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/themes/app_colors.dart';
@@ -34,7 +35,7 @@ class _LandingPageState extends State<LandingPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Image.asset("assets/images/landing.gif"),
+              Image.asset(Strings.landingImage),
               SizedBox(
                 height: 5.h,
               ),

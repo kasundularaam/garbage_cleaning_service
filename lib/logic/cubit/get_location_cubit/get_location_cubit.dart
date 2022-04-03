@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:garbage_cleaning_service/core/uses_permission/location_services.dart';
 import 'package:meta/meta.dart';
 
 import '../../../data/models/lat_long.dart';
@@ -10,11 +11,11 @@ class GetLocationCubit extends Cubit<GetLocationState> {
   GetLocationCubit() : super(GetLocationInitial());
   UserSocket userSocket = UserSocket();
 
-  void getLocation() {
+  Future<void> getLocation() async {
     try {
-      userSocket.getLocation().listen((latLong) {
-        // emit(GetLocationGetting(latLong: latLong));
-      });
+      emit(GetLocationLoading());
+      LatLong latLong = await LocationServices.currentLocation();
+      emit(GetLocationSucceed(latLong: latLong));
     } catch (e) {
       emit(GetLocationFailed(errorMsg: e.toString()));
     }

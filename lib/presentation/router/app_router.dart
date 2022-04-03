@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:garbage_cleaning_service/logic/cubit/get_location_cubit/get_location_cubit.dart';
 
 import '../../core/exceptions/route_exception.dart';
 import '../../data/models/type_user.dart';
@@ -29,6 +30,9 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => AllTrainsCubit(),
+              ),
+              BlocProvider(
+                create: (context) => GetLocationCubit(),
               ),
             ],
             child: UserPage(

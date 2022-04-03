@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garbage_cleaning_service/core/constants/strings.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../core/themes/app_colors.dart';
@@ -58,7 +59,7 @@ class MarkerView extends StatelessWidget {
               ),
             ),
             child: Image.asset(
-              "assets/images/train.png",
+              Strings.markerImage,
               width: 10.w,
               height: 10.w,
             ),

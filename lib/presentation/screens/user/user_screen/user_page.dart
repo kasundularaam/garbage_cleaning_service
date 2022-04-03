@@ -41,6 +41,15 @@ class _UserPageState extends State<UserPage> {
                 SizedBox(
                   width: 3.w,
                 ),
+                Expanded(
+                  child: Text(
+                    "Garbage Cleaning Service",
+                    style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
                 SizedBox(
                   width: 1.w,
                 ),
