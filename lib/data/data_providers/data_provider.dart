@@ -9,4 +9,4 @@ class DataProvider {
 
 const String endPointAddress = "http://3.108.41.163:8001";
 
-const String socketAddress = "http://3.108.41.163:3000";
+const String socketAddress = "http://13.126.139.159:3000";
