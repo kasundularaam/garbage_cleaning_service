@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:garbage_cleaning_service/logic/cubit/all_trucks_cubit/all_trucks_cubit.dart';
+import 'package:garbage_cleaning_service/presentation/screens/user/search_screen/search_page.dart';
 
 import '../../core/exceptions/route_exception.dart';
 import '../../data/models/type_user.dart';
-import '../../logic/cubit/all_trains_cubit/all_trains_cubit.dart';
 import '../../logic/cubit/landing_screen_cubit/landing_screen_cubit.dart';
 import '../../logic/cubit/login_cubit/login_cubit.dart';
 import '../../logic/cubit/register_cubit/register_cubit.dart';
@@ -35,7 +36,7 @@ class AppRouter {
           builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => AllTrainsCubit(),
+                create: (context) => AllTrucksCubit(),
               ),
             ],
             child: UserPage(
@@ -76,6 +77,13 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => RegisterCubit(),
             child: const SignInPage(),
+          ),
+        );
+      case searchPage:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => RegisterCubit(),
+            child: const SearchPage(),
           ),
         );
       default:

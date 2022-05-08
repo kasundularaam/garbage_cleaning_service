@@ -7,7 +7,7 @@ import '../data_providers/data_provider.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/station.dart';
-import '../models/train_details.dart';
+import '../models/truck_details.dart';
 
 class HTTPServices {
   static Future<List<Station>> getStations() async {
@@ -29,7 +29,7 @@ class HTTPServices {
     }
   }
 
-  static Future<List<TrainDetails>> getTrainDetails(
+  static Future<List<TruckDetails>> getTrainDetails(
       {required String start, required String end}) async {
     try {
       final response = await http.get(

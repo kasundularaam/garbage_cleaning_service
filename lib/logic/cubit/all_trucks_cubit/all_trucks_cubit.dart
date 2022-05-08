@@ -6,10 +6,10 @@ import "package:latlong2/latlong.dart" as latLng;
 import '../../../data/socket/user_socket.dart';
 import '../../../presentation/screens/user/user_screen/widgets/marker_view.dart';
 
-part 'all_trains_state.dart';
+part 'all_trucks_state.dart';
 
-class AllTrainsCubit extends Cubit<AllTrainsState> {
-  AllTrainsCubit() : super(AllTrainsInitial());
+class AllTrucksCubit extends Cubit<AllTrucksState> {
+  AllTrucksCubit() : super(AllTrucksInitial());
 
   UserSocket userSocket = UserSocket();
   List<Marker> markers = [];
@@ -17,7 +17,7 @@ class AllTrainsCubit extends Cubit<AllTrainsState> {
 
   Future<void> loadTrains() async {
     try {
-      emit(AllTrainsLoading());
+      emit(AllTrucksLoading());
 
       userSocket.getLocation().listen((trainLocation) {
         if (!trainIds.contains(trainLocation.trainId)) {
@@ -42,10 +42,10 @@ class AllTrainsCubit extends Cubit<AllTrainsState> {
           final index = trainIds.indexOf(trainLocation.trainId);
           markers[index] = marker;
         }
-        emit(AllTrainsLoaded(markers: markers));
+        emit(AllTrucksLoaded(markers: markers));
       });
     } catch (e) {
-      emit(AllTrainsFailed(errorMsg: e.toString()));
+      emit(AllTrucksFailed(errorMsg: e.toString()));
     }
   }
 

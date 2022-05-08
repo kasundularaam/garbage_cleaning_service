@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import "package:latlong2/latlong.dart" as latLng;
 
-import '../../../../../logic/cubit/all_trains_cubit/all_trains_cubit.dart';
+import '../../../../../logic/cubit/all_trucks_cubit/all_trucks_cubit.dart';
 
 class UserMap extends StatefulWidget {
   const UserMap({Key? key}) : super(key: key);
@@ -20,9 +20,9 @@ class _UserMapState extends State<UserMap> {
   List<Marker> markers = [];
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AllTrainsCubit, AllTrainsState>(
+    return BlocListener<AllTrucksCubit, AllTrucksState>(
       listener: (context, state) {
-        if (state is AllTrainsLoaded) {
+        if (state is AllTrucksLoaded) {
           log(state.markers.length.toString());
           setState(() {
             markers = state.markers;

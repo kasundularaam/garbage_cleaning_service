@@ -4,7 +4,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../core/themes/app_colors.dart';
 import '../../../../data/models/type_user.dart';
-import '../../../../logic/cubit/all_trains_cubit/all_trains_cubit.dart';
+import '../../../../logic/cubit/all_trucks_cubit/all_trucks_cubit.dart';
 import '../../../../logic/cubit/sign_out_cubit/sign_out_cubit.dart';
 import '../../../router/app_router.dart';
 import '../../widgets/sign_out_window.dart';
@@ -26,12 +26,12 @@ class _UserPageState extends State<UserPage> {
   @override
   void dispose() {
     super.dispose();
-    BlocProvider.of<AllTrainsCubit>(context).dispose();
+    BlocProvider.of<AllTrucksCubit>(context).dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<AllTrainsCubit>(context).loadTrains();
+    BlocProvider.of<AllTrucksCubit>(context).loadTrains();
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -42,30 +42,34 @@ class _UserPageState extends State<UserPage> {
                   width: 3.w,
                 ),
                 Expanded(
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
-                    margin: EdgeInsets.symmetric(vertical: 1.5.h),
-                    decoration: BoxDecoration(
-                        color: AppColors.primaryColor.withOpacity(0.15),
-                        borderRadius: BorderRadius.circular(2.w)),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Search...",
-                            style: TextStyle(
-                                color: AppColors.primaryColor,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600),
+                  child: InkWell(
+                    onTap: () =>
+                        Navigator.pushNamed(context, AppRouter.searchPage),
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
+                      margin: EdgeInsets.symmetric(vertical: 1.5.h),
+                      decoration: BoxDecoration(
+                          color: AppColors.primaryColor.withOpacity(0.15),
+                          borderRadius: BorderRadius.circular(2.w)),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Search...",
+                              style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Icons.search_rounded,
-                          color: AppColors.primaryColor,
-                          size: 22.sp,
-                        ),
-                      ],
+                          Icon(
+                            Icons.search_rounded,
+                            color: AppColors.primaryColor,
+                            size: 22.sp,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
